@@ -13,7 +13,7 @@ const Navbar = () => {
     <div>
       {/* Navbar original */}
       <nav className="bg-blue-500 p-3 relative z-10">
-        <div className="flex flex-row items-center justify-between mx-auto pl-5 pr-5">
+        <div className="flex items-center justify-between px-4 py-2">
           {/* Texto e ícono a la izquierda */}
           <div 
             className="flex items-center text-white text-sm sm:text-base font-bold cursor-pointer" 
