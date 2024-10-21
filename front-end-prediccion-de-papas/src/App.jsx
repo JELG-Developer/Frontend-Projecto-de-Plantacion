@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.jsx
+import Navbar from './components/Navbar';
+import upeaImage from './assets/upea.jpeg';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Navbar />
+      {/* Espaciado adicional para asegurar que la imagen esté debajo del navbar */}
+      <div className="pt-[100px] bg-white min-h-screen">
+        <div className="flex items-start pl-5 pt-10 md:pt-0"> {/* Contenedor flex */}
+          <div className="overflow-hidden rounded-full border-4 border-blue-500 w-[80px] h-[80px] md:w-[120px] md:h-[120px]"> {/* Tamaño de la imagen */}
+            <img 
+              src={upeaImage} 
+              alt="Upea" 
+              className="w-full h-full object-cover" 
+            />
+          </div>
+          <div className="ml-4 text-base text-left mt-2 md:mt-5"> {/* Texto alineado a la izquierda con margen superior */}
+            <div>Universidad Pública</div>
+            <div>del Alto - Ingeniería</div>
+            <div>en Sistemas</div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
