@@ -106,18 +106,22 @@ const Hero = () => {
       </div>
 
       {/* Nueva Sección de Ciclo, Papa, Técnicas y Proyecto */}
-      <div className="py-10 flex flex-col md:flex-row justify-center items-center">
-        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Ciclo */}
-          <Card_Ciclo />
-        </div>
-        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Papa */}
-          <Card_Papa />
-        </div>
-        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Técnicas */}
-          <Card_Tecnicas />
-        </div>
-        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Proyecto de Desarrollo Agrícola */}
-          <Card_Proyecto />
+      <div className="py-10 flex flex-col items-center">
+        <h2 className="subtitle mb-2 text-sm md:text-xl lg:text-2xl">Últimas Funciones</h2> {/* Título de sección */}
+        <hr className="w-1/2 border-t border-black mb-6" /> {/* Línea minimalista */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+          <div className="mb-4"> {/* Ciclo */}
+            <Card_Ciclo />
+          </div>
+          <div className="mb-4"> {/* Papa */}
+            <Card_Papa />
+          </div>
+          <div className="mb-4"> {/* Técnicas */}
+            <Card_Tecnicas />
+          </div>
+          <div className="mb-4"> {/* Proyecto de Desarrollo Agrícola */}
+            <Card_Proyecto />
+          </div>
         </div>
       </div>
 

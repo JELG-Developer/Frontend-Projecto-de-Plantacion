@@ -26,7 +26,7 @@ const Ciclo = () => {
 
   return (
     <div 
-      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-auto' : 'h-24'}`} // Ajustar altura aquí
+      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-[400px]' : 'h-24'}`} // Ajustar altura aquí
       onClick={() => {
         // Cambia el estado solo en dispositivos móviles
         if (window.innerWidth < 768) {

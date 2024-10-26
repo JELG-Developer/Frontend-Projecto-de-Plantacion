@@ -26,7 +26,7 @@ const Tecnicas = () => {
 
   return (
     <div 
-      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-auto' : 'h-24'}`} // Ajustar altura aquí
+      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-[400px]' : 'h-24'}`} // Ajustar altura aquí
       onClick={() => {
         // Cambia el estado solo en dispositivos móviles
         if (window.innerWidth < 768) {
@@ -45,11 +45,11 @@ const Tecnicas = () => {
         <h2 
           className={`card-title text-white font-bold ${isExpanded ? '' : 'cursor-pointer'}`}
         >
-          Técnicas de Conservación Tradicionales
+          Técnicas de Conservación
         </h2>
         {/* Mostrar el párrafo solo si está expandido */}
         <p className={`mt-2 text-white text-justify ${isExpanded ? 'block' : 'hidden md:block'}`}>
-          Las técnicas de conservación, como el chuño y la tunta, son importantes en el ciclo agrícola, 
+          Las técnicas de conservación tradicionales, como el chuño y la tunta, son importantes en el ciclo agrícola, 
           ya que permiten a los agricultores prolongar la vida útil de la papa y almacenar la producción 
           para su uso durante el año. Estas prácticas se integran en el ciclo agrícola, especialmente 
           después de la cosecha.

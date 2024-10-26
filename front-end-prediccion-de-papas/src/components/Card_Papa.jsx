@@ -26,7 +26,7 @@ const Papa = () => {
 
   return (
     <div 
-      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-auto' : 'h-24'}`} // Ajustar altura aquí
+      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-[400px]' : 'h-24'}`} // Ajustar altura aquí
       onClick={() => {
         // Cambia el estado solo en dispositivos móviles
         if (window.innerWidth < 768) {
@@ -49,14 +49,15 @@ const Papa = () => {
         </h2>
         {/* Mostrar el párrafo solo si está expandido */}
         <p className={`mt-2 text-white text-justify ${isExpanded ? 'block' : 'hidden md:block'}`}>
-          El Altiplano boliviano alberga una gran diversidad de papa, con más de 200 variedades nativas cultivadas.:
-          <ul className="list-disc ml-5 mt-2">
-            <li><strong>Imilla negra:</strong> Una papa de pulpa blanca y cáscara oscura, resistente a climas fríos.</li>
-            <li><strong>Waych’a:</strong> Muy popular en las alturas por su resistencia a la helada.</li>
-            <li><strong>Qhatiña:</strong> Especialmente utilizada para la producción de chuño.</li>
-            <li><strong>Ajawiri:</strong> Adaptada a las condiciones áridas del altiplano.</li>
-          </ul>
+          El Altiplano boliviano alberga una gran diversidad de papa, con más de 200 variedades nativas cultivadas.
         </p>
+        {/* Lista fuera del párrafo */}
+        <ul className={`list-disc ml-5 mt-2 ${isExpanded ? 'block' : 'hidden md:block'}`}>
+          <li><strong>Imilla negra:</strong> Una papa de pulpa blanca y cáscara oscura, resistente a climas fríos.</li>
+          <li><strong>Waych’a:</strong> Muy popular en las alturas por su resistencia a la helada.</li>
+          <li><strong>Qhatiña:</strong> Especialmente utilizada para la producción de chuño.</li>
+          <li><strong>Ajawiri:</strong> Adaptada a las condiciones áridas del altiplano.</li>
+        </ul>
       </div>
     </div>
   );

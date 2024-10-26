@@ -25,14 +25,14 @@ const ProyectoDesarrolloAgricola = () => {
 
   return (
     <div 
-      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-auto' : 'h-24'}`} 
+      className={`card bg-base-100 image-full w-96 shadow-xl mx-auto mt-6 transition-transform transform hover:scale-105 ${isExpanded ? 'h-[400px]' : 'h-24'}`} 
       onClick={handleCardClick}
     >
       <figure>
         <img 
           src={proyectoImage} 
           alt="Proyecto de Desarrollo Agrícola" 
-          className="object-cover w-full h-48"
+          className="object-cover w-full h-24"
         />
       </figure>
       <div className="card-body">
