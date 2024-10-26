@@ -71,27 +71,27 @@ const Hero = () => {
       </div>
 
       {/* Botones de selección de información */}
-      <div className="py-10 grid grid-cols-2 gap-4 md:flex md:justify-around md:flex-row">
+      <div className="py-10 gap-4 md:flex md:justify-around md:flex-row">
         <button 
-          className="btn w-full max-w-xs bg-blue-500 text-white hover:bg-blue-700 transition duration-200 h-12 md:h-16" 
+          className="btn  bg-blue-500 text-white hover:bg-blue-700 transition duration-200 h-12 " 
           onClick={() => setSelectedInfo("Clima")}
         >
           Clima y Ecosistema
         </button>
         <button 
-          className="btn w-full max-w-xs bg-green-500 text-white hover:bg-green-700 transition duration-200 h-12 md:h-16" 
+          className="btn  bg-green-500 text-white hover:bg-green-700 transition duration-200 h-12 " 
           onClick={() => setSelectedInfo("Teoria")}
         >
           Teoría del cultivo
         </button>
         <button 
-          className="btn w-full max-w-xs bg-purple-500 text-white hover:bg-purple-700 transition duration-200 h-12 md:h-16" 
+          className="btn  bg-purple-500 text-white hover:bg-purple-700 transition duration-200 h-12 " 
           onClick={() => setSelectedInfo("Economia")}
         >
           Economía Local
         </button>
         <button 
-          className="btn w-full max-w-xs bg-orange-500 text-white hover:bg-orange-700 transition duration-200 h-12 md:h-16" 
+          className="btn  bg-orange-500 text-white hover:bg-orange-700 transition duration-200 h-12 " 
           onClick={() => setSelectedInfo("Tecnologia")}
         >
           Nuevas Tecnologías
