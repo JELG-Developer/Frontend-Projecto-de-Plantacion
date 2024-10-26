@@ -4,12 +4,16 @@ import Clima from '../components/Clima';
 import Teoria from '../components/Teoria';
 import Economia from '../components/Economia';
 import Tecnologia from '../components/Tecnologia';
+import Card_Ciclo from '../components/Card_Ciclo';
+import Card_Papa from '../components/Card_Papa';
+import Card_Tecnicas from '../components/Card_Tecnicas';
+import Card_Proyecto from '../components/Card_Proyecto';
 import Footer from '../components/Footer';
 import upeaImage from '../assets/upea.jpeg';
 import backgroundImage from '../assets/background.jpg';
 
 /**
- * Página de inicio de la aplicación. Contiene la barra de navegación, 
+ * Componente principal de la aplicación. Contiene la barra de navegación, 
  * el fondo con la imagen de la UPEA y el título del proyecto, y los botones 
  * para seleccionar la información a mostrar.
  * 
@@ -44,12 +48,9 @@ const Hero = () => {
 
   return (
     <div>
-      {/* Navbar */}
       <Navbar />
-
-      {/* Sección Hero con fondo de imagen */}
       <div 
-        className="bg-cover bg-center bg-no-repeat h-screen flex flex-col justify-between px-4"
+        className="bg-cover bg-center bg-no-repeat h-screen md:h-[800px] flex flex-col justify-between px-4"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="flex items-start w-max py-5 px-4">
@@ -70,40 +71,56 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Botones de selección de información */}
-      <div className="py-10 gap-4 md:flex md:justify-around md:flex-row">
-        <button 
-          className="btn  bg-blue-500 text-white hover:bg-blue-700 transition duration-200 h-12 " 
-          onClick={() => setSelectedInfo("Clima")}
-        >
-          Clima y Ecosistema
-        </button>
-        <button 
-          className="btn  bg-green-500 text-white hover:bg-green-700 transition duration-200 h-12 " 
-          onClick={() => setSelectedInfo("Teoria")}
-        >
-          Teoría del cultivo
-        </button>
-        <button 
-          className="btn  bg-purple-500 text-white hover:bg-purple-700 transition duration-200 h-12 " 
-          onClick={() => setSelectedInfo("Economia")}
-        >
-          Economía Local
-        </button>
-        <button 
-          className="btn  bg-orange-500 text-white hover:bg-orange-700 transition duration-200 h-12 " 
-          onClick={() => setSelectedInfo("Tecnologia")}
-        >
-          Nuevas Tecnologías
-        </button>
+      <div className="py-10 flex justify-center">
+        <div className="grid grid-cols-2 gap-4 w-full max-w-md px-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:max-w-7xl">
+          <button 
+            className="btn w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-200 h-12 md:h-16" 
+            onClick={() => setSelectedInfo("Clima")}
+          >
+            Clima y Ecosistema
+          </button>
+          <button 
+            className="btn w-full bg-green-500 text-white hover:bg-green-700 transition duration-200 h-12 md:h-16" 
+            onClick={() => setSelectedInfo("Teoria")}
+          >
+            Teoría del cultivo
+          </button>
+          <button 
+            className="btn w-full bg-purple-500 text-white hover:bg-purple-700 transition duration-200 h-12 md:h-16" 
+            onClick={() => setSelectedInfo("Economia")}
+          >
+            Economía Local
+          </button>
+          <button 
+            className="btn w-full bg-orange-500 text-white hover:bg-orange-700 transition duration-200 h-12 md:h-16" 
+            onClick={() => setSelectedInfo("Tecnologia")}
+          >
+            Nuevas Tecnologías
+          </button>
+        </div>
       </div>
 
-      {/* Componente seleccionado */}
+      {/* Sección para mostrar información seleccionada */}
       <div className="flex justify-center items-center p-6">
         {renderSelectedComponent()}
       </div>
 
-      {/* Footer */}
+      {/* Nueva Sección de Ciclo, Papa, Técnicas y Proyecto */}
+      <div className="py-10 flex flex-col md:flex-row justify-center items-center">
+        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Ciclo */}
+          <Card_Ciclo />
+        </div>
+        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Papa */}
+          <Card_Papa />
+        </div>
+        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Técnicas */}
+          <Card_Tecnicas />
+        </div>
+        <div className="w-full md:w-1/3 mb-4 md:mb-0"> {/* Proyecto de Desarrollo Agrícola */}
+          <Card_Proyecto />
+        </div>
+      </div>
+
       <Footer />
     </div>
   );

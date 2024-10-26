@@ -60,6 +60,23 @@ button:focus-visible {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
+.subtitle {
+  color: #000; /* Color negro */
+  font-family: "Nunito Sans", "Open Sans", "Helvetica Neue", sans-serif; /* Fuentes especificadas */
+  font-size: 1.5rem; /* Tamaño de texto */
+  font-weight: 700; /* Peso de la fuente en negrita */
+  text-transform: uppercase; /* Transformar a mayúsculas */
+  word-wrap: break-word; /* Ajustar palabras largas */
+  font-feature-settings: "kern" 1; /* Ajustes de kerning */
+  font-kerning: normal; /* Kerning normal */
+  line-height: unset; /* Sin ajuste de línea */
+  box-sizing: inherit; /* Heredar box-sizing */
+  vertical-align: inherit; /* Heredar alineación vertical */
+  letter-spacing: 0.1em; /* Espaciado entre letras */
+}
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
