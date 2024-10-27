@@ -22,15 +22,6 @@ import backgroundImage from '../assets/background.jpg';
 const Hero = () => {
   const [selectedInfo, setSelectedInfo] = useState("Clima");
 
-  /**
-   * Renderiza el componente seleccionado por el usuario.
-   * 
-   * El valor de `selectedInfo` determina qué componente se renderiza. Si
-   * el valor no coincide con ninguno de los casos conocidos, se muestra el
-   * componente `Clima` por defecto.
-   * 
-   * @returns {React.ReactElement} Componente seleccionado.
-   */
   const renderSelectedComponent = () => {
     switch (selectedInfo) {
       case "Clima":
@@ -109,7 +100,7 @@ const Hero = () => {
       <div className="py-10 flex flex-col items-center">
         <h2 className="subtitle mb-2 text-sm md:text-xl lg:text-2xl">Últimas Funciones</h2> {/* Título de sección */}
         <hr className="w-1/2 border-t border-black mb-6" /> {/* Línea minimalista */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-5xl">
           <div className="mb-4"> {/* Ciclo */}
             <Card_Ciclo />
           </div>
