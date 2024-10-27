@@ -11,7 +11,7 @@ import upeaLogo from '../assets/upea.jpeg'; // Asegúrate de tener el logo en la
  */
 const Footer = () => {
   return (
-    <footer className="bg-[#333333] text-white py-6 mt-12">
+    <footer className="bg-[#333333] text-white py-6 mt-12 px-4 ">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         {/* Sección del Logo y texto */}
         <div className="flex items-center mb-4 md:mb-0">

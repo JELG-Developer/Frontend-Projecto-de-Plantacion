@@ -41,7 +41,7 @@ const Hero = () => {
     <div>
       <Navbar />
       <div 
-        className="bg-cover bg-center bg-no-repeat h-screen md:h-[800px] flex flex-col justify-between px-4"
+        className="bg-cover bg-center bg-no-repeat h-screen  flex flex-col justify-between px-4"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="flex items-start w-max py-5 px-4">
