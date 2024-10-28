@@ -11,34 +11,41 @@ import upeaLogo from '../assets/upea.jpeg'; // Asegúrate de tener el logo en la
  */
 const Footer = () => {
   return (
-    <footer className="bg-[#333333] text-white py-6 mt-12 px-4 ">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        {/* Sección del Logo y texto */}
-        <div className="flex items-center mb-4 md:mb-0">
-          <div className="w-12 h-12 mr-3 rounded-full overflow-hidden border-2 border-white">
+    <>
+      <footer className="footer bg-base-200 text-base-content p-10 border-base-300 border-t mt-8">
+        <nav>
+          <h6 className="footer-title">Servicios</h6>
+          <a className="link link-hover">Noticias</a>
+          <a className="link link-hover">Herramientas</a>
+          <a className="link link-hover">Acerca de</a>
+        </nav>
+        <nav>
+          <h6 className="footer-title">Equipo</h6>
+          <a className="link link-hover">Sobre nosotros</a>
+          <a className="link link-hover">Contacto</a>
+          <a className="link link-hover">Trabajos</a>
+        </nav>
+        <nav>
+          <h6 className="footer-title">Legal</h6>
+          <a className="link link-hover">Términos de uso</a>
+          <a className="link link-hover">Política de privacidad</a>
+        </nav>
+      </footer>
+
+      {/* Sección de la Universidad */}
+      <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+        <aside className="flex items-center">
+          <div className="w-12 h-12 mr-3 rounded-full overflow-hidden border-2 border-gray-400">
             <img src={upeaLogo} alt="UPEA Logo" className="w-full h-full object-cover" />
           </div>
-          <div className="text-sm">
-            <p>Universidad Pública de El Alto</p>
-          </div>
-        </div>
-
-        {/* Sección de enlaces */}
-        <div className="flex flex-wrap justify-center md:justify-end space-x-3 text-xs md:text-sm">
-          <a href="#noticias" className="hover:underline">Noticias</a>
-          <a href="#herramientas" className="hover:underline">Herramientas</a>
-          <a href="#acerca" className="hover:underline">Acerca de</a>
-        </div>
-      </div>
-      
-      {/* Segunda línea de enlaces */}
-      <div className="mt-4 border-t border-gray-600 pt-4 text-center text-xs">
-        <a href="#privacidad" className="hover:underline mx-2">Privacidad</a>|
-        <a href="#responsabilidad" className="hover:underline mx-2">Responsabilidad</a>|
-        <a href="#contacto" className="hover:underline mx-2">Contáctenos</a>|
-        <a href="#ayuda" className="hover:underline mx-2">¿Necesitar ayuda?</a>
-      </div>
-    </footer>
+          <p>
+            Universidad Pública de El Alto
+            <br />
+            Proporcionando educación de calidad desde 1992
+          </p>
+        </aside>
+      </footer>
+    </>
   );
 }
 

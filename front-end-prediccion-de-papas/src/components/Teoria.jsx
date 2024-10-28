@@ -22,9 +22,11 @@ const Teoria = () => {
         className="w-full md:w-[385px] h-[256px] object-cover rounded-lg"
       />
       <div className="p-4 flex flex-col justify-between">
-        <h2 className="text-xl font-bold">Teoría del cultivo</h2>
+        <h2 className="text-xl font-bold">Teoría del Cultivo</h2>
         <p className="mt-2 text-gray-700 text-justify">
-          El cultivo en las regiones altiplánicas requiere técnicas adaptadas a la altitud y al clima frío. La preparación del terreno para la siembra de papa incluye el uso de terrazas y sistemas de andenes para controlar la erosión del suelo y conservar la humedad. Tradicionalmente, los agricultores siguen un calendario agrícola basado en la observación del clima y las estrellas, utilizando rotaciones de cultivos para mantener la fertilidad del suelo. La papa se planta generalmente a principios de la temporada de lluvias, entre octubre y diciembre, cuando las temperaturas son más moderadas.
+          El cultivo en las regiones altiplánicas requiere técnicas específicas adaptadas a la altitud y el clima frío. La preparación del terreno para la siembra de papa es clave, usando terrazas y andenes para evitar la erosión del suelo y conservar humedad. Estas prácticas ayudan a aprovechar las escasas lluvias de la temporada.
+          <br /><br />
+          Tradicionalmente, los agricultores siguen un calendario agrícola basado en la observación del clima, las fases lunares y las estrellas, esenciales para determinar el momento adecuado para la siembra. Además, el uso de rotaciones de cultivos contribuye a mantener la fertilidad del suelo, permitiendo que la tierra recupere nutrientes. La papa se planta a principios de la temporada de lluvias, entre octubre y diciembre, cuando las temperaturas son moderadas y favorables.
         </p>
       </div>
     </div>

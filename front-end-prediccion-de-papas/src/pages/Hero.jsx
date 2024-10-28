@@ -20,7 +20,7 @@ import backgroundImage from '../assets/background.jpg';
  * @returns {React.ReactElement} 
  */
 const Hero = () => {
-  const [selectedInfo, setSelectedInfo] = useState("Clima");
+  const [selectedInfo, setSelectedInfo] = useState("Teoria");
 
   const renderSelectedComponent = () => {
     switch (selectedInfo) {
@@ -41,7 +41,7 @@ const Hero = () => {
     <div>
       <Navbar />
       <div 
-        className="bg-cover bg-center bg-no-repeat h-screen  flex flex-col justify-between px-4"
+        className="bg-cover bg-center bg-no-repeat h-screen flex flex-col justify-between px-4"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="flex items-start w-max py-5 px-4">
@@ -57,7 +57,7 @@ const Hero = () => {
             <p className="text-white text-shadow">Ingeniería en Sistemas</p>
           </div>
         </div>
-        <div className="text-white text-4xl md:text-6xl ml-4 font-bold shadow-lg">
+        <div className="text-white text-4xl md:text-6xl ml-4 font-bold">
           <p className='pb-20 text-shadow tracking-wide'>Pronóstico de Lluvias <br /> en el Altiplano</p>
         </div>
       </div>
@@ -97,9 +97,10 @@ const Hero = () => {
       </div>
 
       {/* Nueva Sección de Ciclo, Papa, Técnicas y Proyecto */}
-      <div className="py-10 flex flex-col items-center">
-        <h2 className="subtitle mb-2 text-sm md:text-xl lg:text-2xl">Últimas Funciones</h2> {/* Título de sección */}
-        <hr className="w-1/2 border-t border-black mb-6" /> {/* Línea minimalista */}
+      <div className="flex flex-col items-center">
+        <div className="divider divider-neutral mb-6">
+          <h2 className="subtitle text-sm md:text-xl lg:text-2xl">Últimas Funciones</h2>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 w-full max-w-5xl">
           <div className="mb-4"> {/* Ciclo */}
             <Card_Ciclo />

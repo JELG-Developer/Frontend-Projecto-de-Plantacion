@@ -20,24 +20,28 @@ const Navbar = () => {
 
   return (
     <div>
-      {/* Navbar original */}
-      <nav className="bg-blue-500 p-3 relative z-10">
-        <div className="flex items-center justify-between px-4 py-2">
-          {/* Texto e ícono a la izquierda */}
+      {/* Navbar actualizado */}
+      <div className="navbar bg-blue-500">
+        <div className="flex-1">
           <div 
-            className="flex items-center text-white text-sm sm:text-base font-bold cursor-pointer" 
+            className="flex items-center cursor-pointer text-white text-sm sm:text-base font-bold ml-5 hover:bg-blue-600 p-2 rounded transition duration-200" 
             onClick={toggleSearch}
           >
+            <img src={locationIcon} alt="Location Icon" className="w-3 h-4 mr-2" />
             Encuentra tu localidad
-            <img src={locationIcon} alt="Location Icon" className="w-3 h-4 ml-2" />
-          </div>
-
-          {/* Enlace a la derecha */}
-          <div className="text-white hover:text-gray-200">
-            <a href="#about" className="text-sm sm:text-base">Acerca de</a>
           </div>
         </div>
-      </nav>
+        <div className="flex-none mr-5">
+          <div className="text-white">
+            <a 
+              href="#about" 
+              className="text-sm sm:text-base hover:bg-blue-600 hover:text-white p-2 rounded transition duration-200"
+            >
+              Acerca de
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* Cuadro de búsqueda con animación */}
       <div 
