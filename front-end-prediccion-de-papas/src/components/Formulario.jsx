@@ -1,10 +1,14 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 const Formulario = () => {
   const [formData, setFormData] = useState({
     gestion: 0,
     mes: 0,
+    estacion : "",
+    latitud : 0,
+    longitud : 0,
+    altura : 0,
     temperatura_media: 0,
     humedad_relativa_media: 0,
     precipitacion: 0,
@@ -49,29 +53,40 @@ const Formulario = () => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/variacion', formData);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/variacion",
+        formData
+      );
 
       if (response.status === 200) {
         setAlert({
-          type: 'success',
-          message: '¡Los datos se han guardado correctamente!',
+          type: "success",
+          message: "¡Los datos se han guardado correctamente!",
         });
       }
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       setAlert({
-        type: 'error',
-        message: '¡Error! Los datos no pudieron ser guardados.',
+        type: "error",
+        message: "¡Error! Los datos no pudieron ser guardados.",
       });
     }
   };
 
   return (
-    <form className="flex flex-col items-center space-y-4 mt-12" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col items-center space-y-4 mt-12"
+      onSubmit={handleSubmit}
+    >
       {Object.keys(formData).map((key) => (
-        <label key={key} className={`input input-bordered ${errors[key] ? 'input-error' : ''} flex items-center gap-2 w-full max-w-md`}>
+        <label
+          key={key}
+          className={`input input-bordered ${
+            errors[key] ? "input-error" : ""
+          } flex items-center gap-2 w-full max-w-md`}
+        >
           <span>
-            {key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ')}
+            {key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, " ")}
             {formData[key] === 0 && <span className="text-red-500"> *</span>}
           </span>
           <input
@@ -88,12 +103,32 @@ const Formulario = () => {
         Guardar
       </button>
       {alert && (
-        <div role="alert" className={`alert ${alert.type === 'success' ? 'alert-success' : 'alert-error'} mt-4`}>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-            {alert.type === 'success' ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div
+          role="alert"
+          className={`alert ${
+            alert.type === "success" ? "alert-success" : "alert-error"
+          } mt-4`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            {alert.type === "success" ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             )}
           </svg>
           <span>{alert.message}</span>
