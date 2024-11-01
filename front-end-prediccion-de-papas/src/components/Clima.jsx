@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import climaImage from "../assets/clima.jpg";
-import mapa from "../assets/mapa.png";
 import Formulario from "./Formulario";
 import Graficas from "./Graficas";
+import Mapa from "./Mapa";
 import axios from "axios";
 import { TablaHistorica } from "./TablaHistorica";
 import { TablaRecoverd } from "./TablaRecoverd";
 
 const Clima = () => {
   const [climateData, setClimateData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Cambiar este valor según sea necesario
 
   useEffect(() => {
-    // Cargar datos del servidor
     const fetchClimateData = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/");
@@ -23,6 +24,20 @@ const Clima = () => {
 
     fetchClimateData();
   }, []);
+
+  // Calcular total de páginas
+  const totalPages = Math.ceil(climateData.length / itemsPerPage);
+
+  // Obtener los elementos actuales para la página actual
+  const currentItems = climateData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Cambiar de página
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="p-5">
@@ -55,32 +70,50 @@ const Clima = () => {
       {/* Sección de Gráficas */}
       <div className="mb-4 h-1/3">
         <div className="divider divider-neutral mb-10 mt-10">
-          <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl ">
+          <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
             Gráficas
           </h2>
         </div>
         <Graficas data={climateData} />
       </div>
 
+      {/* Sección de Mapa */}
       <div className="mb-4">
-        <div className="divider divider-primary mb-10 mt-10">
-          <h2 className="subtitle text-primary text-sm md:text-xl lg:text-2xl">
-            Mapa
-          </h2>
-        </div>
-        <img
-          src={mapa}
-          alt="Mapa"
-          className="w-full h-[400px] object-contain rounded-lg mb-4"
-        />
+        <div className="divider divider-neutral mb-10 mt-10">
+            <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
+              Mapa
+            </h2>
+          </div>
+          <Mapa />
       </div>
-      {/* seccion de las tablas  */}
-      <TablaHistorica data={climateData} />
+      
+      {/* Seccion de las tablas con paginación */}
+      <TablaHistorica data={currentItems} />
+      <div className="mb-4">
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[...Array(totalPages)].map((_, index) => (
+              <input
+                key={index}
+                className="join-item btn btn-sm"
+                type="radio"
+                name="options"
+                id={`page-${index + 1}`}
+                aria-label={`${index + 1}`}
+                checked={currentPage === index + 1}
+                onChange={() => handlePageChange(index + 1)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="divider divider-primary mb-10 mt-10">
         <h2 className="subtitle text-primary text-sm md:text-xl lg:text-2xl">
-          Prediccion
+          Predicción
         </h2>
       </div>
+
       <TablaRecoverd />
       <div className="mb-4">
         <div className="divider divider-secondary mb-10 mt-10">
