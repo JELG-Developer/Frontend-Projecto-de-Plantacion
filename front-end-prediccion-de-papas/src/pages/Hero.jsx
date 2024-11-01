@@ -20,7 +20,7 @@ import backgroundImage from '../assets/background.jpg';
  * @returns {React.ReactElement} 
  */
 const Hero = () => {
-  const [selectedInfo, setSelectedInfo] = useState("Teoria");
+  const [selectedInfo, setSelectedInfo] = useState("Clima");
 
   const renderSelectedComponent = () => {
     switch (selectedInfo) {

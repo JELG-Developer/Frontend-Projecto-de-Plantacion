@@ -25,7 +25,7 @@ ChartJS.register(
 
 // eslint-disable-next-line react/prop-types
 const Graficas = ({ data }) => {
-  const [loading, setLoading] = useState(true); // Estado para cargar datos
+  const [setLoading] = useState(true); // Estado para cargar datos
 
   // Usar useEffect para simular carga de datos
   useEffect(() => {
@@ -139,15 +139,6 @@ const Graficas = ({ data }) => {
       },
     },
   };
-
-  // Mientras se carga, muestra el spinner
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-full">
-        <span className="loading loading-spinner text-neutral"></span>
-      </div>
-    );
-  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-2">

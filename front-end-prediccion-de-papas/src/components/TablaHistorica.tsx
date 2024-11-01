@@ -13,7 +13,17 @@ export const TablaHistorica = ({ data }) => {
     "Presion",
     "Velocidad de Viento Media",
   ];
+
   console.log(JSON.stringify(data));
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   return (
     <div className="mb-4">
       <div className="divider divider-primary mb-10 mt-10">
@@ -21,8 +31,8 @@ export const TablaHistorica = ({ data }) => {
           Historial
         </h2>
       </div>
-      <div className="max-h-80 overflow-y-auto" >
-        <div className="overflow-x-auto ">
+      <div className="max-h-80 overflow-y-auto">
+        <div className="overflow-x-auto">
           <table className="table table-xs">
             <thead>
               <tr>
@@ -35,7 +45,11 @@ export const TablaHistorica = ({ data }) => {
               {data.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {columns.map((column, colIndex) => (
-                    <td key={colIndex}>{row[column]}</td>
+                    <td key={colIndex}>
+                      {column === "fecha"
+                        ? formatDate(row[column])
+                        : row[column]}
+                    </td>
                   ))}
                 </tr>
               ))}
