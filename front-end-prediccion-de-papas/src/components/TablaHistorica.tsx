@@ -14,7 +14,7 @@ export const TablaHistorica = ({ data }) => {
     "Velocidad de Viento Media",
   ];
 
-  console.log(JSON.stringify(data));
+  // console.log(JSON.stringify(data));
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
