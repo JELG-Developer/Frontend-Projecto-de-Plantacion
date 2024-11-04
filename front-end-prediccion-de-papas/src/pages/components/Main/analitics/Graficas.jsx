@@ -25,7 +25,7 @@ ChartJS.register(
 
 // eslint-disable-next-line react/prop-types
 const Graficas = ({ data }) => {
-  const [setLoading] = useState(true); // Estado para cargar datos
+  const [loading ,setLoading] = useState(true); // Estado para cargar datos
 
   // Usar useEffect para simular carga de datos
   useEffect(() => {
