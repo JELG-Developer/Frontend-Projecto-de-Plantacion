@@ -4,121 +4,79 @@ import axios from "axios";
 
 // Valores base para la predicción de probabilidad
 const baseValues = {
-  temperatura: { min: 10, max: 20 },
-  precipitacion: { min: 400, max: 800 },
-  humedad: { min: 60, max: 80 },
-  presion: { min: 600, max: 700 },
-  viento: 20, // en km/h
+  temperatura: { alta: 15, baja: 5 },
+  precipitacion: { alta: 100, baja: 10 },
+  humedad: { alta: 70, baja: 50 },
+  presion: { alta: 640, baja: 600 },
+  viento: 15,
 };
+
 // Función para calcular la probabilidad
 const calcularProbabilidad = (dato) => {
-  const {
-    "Temperatura Media": temperatura,
-    Precipitación: precipitacion,
-    "Humedad Relativa Media": humedad,
-    Presion: presion,
-    "Velocidad de Viento Media": viento,
-  } = dato;
+  const { "Temperatura Media": temperatura, Precipitación: precipitacion, "Humedad Relativa Media": humedad, Presion: presion, "Velocidad de Viento Media": viento } = dato;
 
-  let probabilidad = "Baja";
-  if (
-    temperatura >= baseValues.temperatura.min &&
-    temperatura <= baseValues.temperatura.max &&
-    precipitacion >= baseValues.precipitacion.min &&
-    precipitacion <= baseValues.precipitacion.max &&
-    humedad >= baseValues.humedad.min &&
-    humedad <= baseValues.humedad.max &&
-    presion >= baseValues.presion.min &&
-    viento <= baseValues.viento
-  ) {
-    probabilidad = "Alta";
-  } else if (
-    (temperatura >= baseValues.temperatura.min &&
-      temperatura <= baseValues.temperatura.max) ||
-    (precipitacion >= baseValues.precipitacion.min &&
-      precipitacion <= baseValues.precipitacion.max) ||
-    (humedad >= baseValues.humedad.min && humedad <= baseValues.humedad.max) ||
-    (presion >= baseValues.presion.min && presion <= baseValues.presion.max) ||
-    viento <= baseValues.viento
-  ) {
-    probabilidad = "Media";
-  }
+  // Evaluar condiciones para alta probabilidad
+  const esAlta =
+    temperatura >= baseValues.temperatura.alta &&
+    precipitacion <= baseValues.precipitacion.baja &&
+    humedad >= baseValues.humedad.alta &&
+    presion >= baseValues.presion.alta &&
+    viento <= baseValues.viento;
 
-  return probabilidad;
+  // Evaluar condiciones para media probabilidad
+  const esMedia =
+    (temperatura >= baseValues.temperatura.baja && temperatura < baseValues.temperatura.alta) ||
+    (precipitacion > baseValues.precipitacion.baja && precipitacion < baseValues.precipitacion.alta) ||
+    (humedad < baseValues.humedad.alta && humedad >= baseValues.humedad.baja) ||
+    (presion < baseValues.presion.alta && presion >= baseValues.presion.baja) ||
+    (viento <= baseValues.viento);
+
+  return esAlta ? "Alta" : esMedia ? "Media" : "Baja";
 };
 
 // Función para formatear la fecha
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, "0"); // Asegura que el día tenga 2 dígitos
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Los meses son 0-indexed
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
+  return date.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" });
 };
 
 // Componente de cada Estación
-// eslint-disable-next-line react/prop-types
 const Estacion = ({ nombre, coordenadas, historial }) => {
   const [dataMeses, setDataMeses] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Número de elementos por página
+  const itemsPerPage = 10;
 
   useEffect(() => {
-    // Inicializar un objeto con los meses del año
-    const meses = {
-      Enero: null,
-      Febrero: null,
-      Marzo: null,
-      Abril: null,
-      Mayo: null,
-      Junio: null,
-      Julio: null,
-      Agosto: null,
-      Septiembre: null,
-      Octubre: null,
-      Noviembre: null,
-      Diciembre: null,
-    };
+    const meses = Array.from({ length: 12 }, (_, i) => ({
+      mes: new Date(0, i).toLocaleString("es-ES", { month: "long" }),
+      probabilidad: "(no predecido)",
+    }));
 
-    // Procesar los datos de historial para predecir la probabilidad por mes
-    // eslint-disable-next-line react/prop-types
     historial.forEach((dato) => {
-      const mes = new Date(dato.fecha).toLocaleString("es-ES", {
-        month: "long",
-      });
-      // Solo agregar si el mes no ha sido definido antes
-      if (
-        Object.prototype.hasOwnProperty.call(meses, mes) &&
-        meses[mes] === null
-      ) {
-        const probabilidad = calcularProbabilidad(dato);
-        meses[mes] = probabilidad;
+      const mesIndex = new Date(dato.fecha).getMonth();
+      const probabilidad = calcularProbabilidad(dato);
+
+      // Solo establece la probabilidad si está en "(no predecido)"
+      if (meses[mesIndex].probabilidad === "(no predecido)") {
+        meses[mesIndex].probabilidad = probabilidad;
+      } else {
+        if (probabilidad === "Alta") {
+          meses[mesIndex].probabilidad = "Alta";
+        }
       }
     });
 
-    // Asegurarse de que hay exactamente 12 meses
-    const resultadoFinal = Object.entries(meses).map(([mes, probabilidad]) => ({
-      mes,
-      probabilidad: probabilidad || "Baja", // Asignar 'Baja' si no se encontró probabilidad
-    }));
-
-    setDataMeses(resultadoFinal);
+    setDataMeses(meses);
   }, [historial]);
 
-  // Manejar la paginación
-  // eslint-disable-next-line react/prop-types
-  const totalItems = historial.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  // eslint-disable-next-line react/prop-types
-  const currentItems = historial.slice(startIndex, startIndex + itemsPerPage);
+  const totalPages = Math.ceil(historial.length / itemsPerPage);
+  const currentItems = historial.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="station-section mb-10  ">
+    <div className="station-section mb-10">
       <h2 className="text-2xl font-bold mb-4">{nombre}</h2>
 
-      {/* Sección de Mapa y Predicción de Meses */}
-      <div className="relative flex max-sm:flex-col ">
+      <div className="relative flex max-sm:flex-col">
         <div className="flex-1">
           <iframe
             title={`Mapa meteorológico de ${nombre}`}
@@ -127,8 +85,6 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
             src={`https://embed.windy.com/embed2.html?lat=${coordenadas.latitud}&lon=${coordenadas.longitud}&zoom=10&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&detailLat=${coordenadas.latitud}&detailLon=${coordenadas.longitud}&metricWind=default&metricTemp=default&radarRange=-1`}
             frameBorder="0"
           ></iframe>
-
-          {/* Etiqueta de ubicación sobre el mapa */}
           <div className="absolute top-2 left-2 bg-white p-2 rounded shadow">
             <span>Latitud: {coordenadas.latitud}</span>
             <br />
@@ -136,9 +92,9 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
           </div>
         </div>
 
-        <div className="flex-1 p-4 ">
+        <div className="flex-1 p-4">
           <h3 className="text-lg font-bold mb-2">Meses y Probabilidad</h3>
-          <table className="table table-xs w-full ">
+          <table className="table table-xs w-full">
             <thead>
               <tr>
                 <th className="text-black">Mes</th>
@@ -157,8 +113,7 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
         </div>
       </div>
 
-      {/* Tabla de Historial con paginación */}
-      <div className="mt-6 overflow-x-auto ">
+      <div className="mt-6 overflow-x-auto">
         <h3 className="text-lg font-bold mb-2">Historial de Datos</h3>
         <table className="table">
           <thead>
@@ -179,23 +134,18 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
                 <td className="text-black">{dato.Precipitación}</td>
                 <td className="text-black">{dato["Humedad Relativa Media"]}</td>
                 <td className="text-black">{dato.Presion}</td>
-                <td className="text-black">
-                  {dato["Velocidad de Viento Media"]}
-                </td>
+                <td className="text-black">{dato["Velocidad de Viento Media"]}</td>
               </tr>
             ))}
           </tbody>
         </table>
 
-        {/* Controles de Paginación */}
         <div className="flex justify-center mt-4">
           <div className="join">
             {[...Array(totalPages)].map((_, index) => (
               <input
                 key={index}
-                className={`join-item btn btn-sm ${
-                  currentPage === index + 1 ? "checked" : ""
-                }`}
+                className={`join-item btn btn-sm ${currentPage === index + 1 ? "checked" : ""}`}
                 type="radio"
                 name="options"
                 id={`page-${index + 1}`}
@@ -220,7 +170,7 @@ const MapaEstaciones = () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/");
         const estaciones = response.data.reduce((acc, dato) => {
-          if (!acc[dato.estacion]) acc[dato.estacion] = [];
+          acc[dato.estacion] = acc[dato.estacion] || [];
           acc[dato.estacion].push(dato);
           return acc;
         }, {});
@@ -234,17 +184,9 @@ const MapaEstaciones = () => {
   }, []);
 
   return (
-    <div className="" >
+    <div>
       {estacionesData.map(([nombre, historial], index) => (
-        <Estacion
-          key={index}
-          nombre={nombre}
-          coordenadas={{
-            latitud: historial[0].latitud,
-            longitud: historial[0].longitud,
-          }}
-          historial={historial}
-        />
+        <Estacion key={index} nombre={nombre} coordenadas={historial[0]} historial={historial} />
       ))}
     </div>
   );

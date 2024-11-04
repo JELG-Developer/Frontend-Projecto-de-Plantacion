@@ -25,7 +25,7 @@ ChartJS.register(
 
 // eslint-disable-next-line react/prop-types
 const Graficas = ({ data }) => {
-  const [loading ,setLoading] = useState(true); // Estado para cargar datos
+  const [setLoading] = useState(true); // Estado para cargar datos
 
   // Usar useEffect para simular carga de datos
   useEffect(() => {
@@ -34,7 +34,7 @@ const Graficas = ({ data }) => {
       setLoading(false); // Cambiar a no cargando después de 2 segundos
     }, 2000);
     return () => clearTimeout(timer); // Limpiar el temporizador al desmontar
-  }, []);
+  }, [setLoading]);
 
   // Preparar datos para los gráficos (no se modifican)
 
