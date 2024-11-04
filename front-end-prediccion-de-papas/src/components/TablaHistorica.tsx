@@ -14,8 +14,6 @@ export const TablaHistorica = ({ data }) => {
     "Velocidad de Viento Media",
   ];
 
-  // console.log(JSON.stringify(data));
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const day = String(date.getDate()).padStart(2, '0');
@@ -35,7 +33,7 @@ export const TablaHistorica = ({ data }) => {
         <div className="overflow-x-auto">
           <table className="table table-xs">
             <thead>
-              <tr>
+              <tr className="text-black">
                 {columns.map((column, index) => (
                   <th key={index}>{column}</th>
                 ))}
@@ -45,7 +43,7 @@ export const TablaHistorica = ({ data }) => {
               {data.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {columns.map((column, colIndex) => (
-                    <td key={colIndex}>
+                    <td key={colIndex} className="text-black">
                       {column === "fecha"
                         ? formatDate(row[column])
                         : row[column]}
@@ -54,13 +52,6 @@ export const TablaHistorica = ({ data }) => {
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              <tr>
-                {columns.map((column, index) => (
-                  <th key={index}>{column}</th>
-                ))}
-              </tr>
-            </tfoot>
           </table>
         </div>
       </div>

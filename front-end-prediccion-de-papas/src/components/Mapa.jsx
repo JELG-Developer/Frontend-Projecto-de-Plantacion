@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -76,7 +77,6 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
     // eslint-disable-next-line react/prop-types
     historial.forEach(dato => {
       const mes = new Date(dato.fecha).toLocaleString('es-ES', { month: 'long' });
-
       // Solo agregar si el mes no ha sido definido antes
       if (Object.prototype.hasOwnProperty.call(meses, mes) && meses[mes] === null) {
         const probabilidad = calcularProbabilidad(dato);
@@ -106,16 +106,21 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
       <h2 className="text-2xl font-bold mb-4">{nombre}</h2>
 
       {/* Sección de Mapa y Predicción de Meses */}
-      <div className="flex">
+      <div className="relative flex">
         <div className="flex-1">
           <iframe
             title={`Mapa meteorológico de ${nombre}`}
             width="100%"
             height="400px"
-            // eslint-disable-next-line react/prop-types
-            src={`https://embed.windy.com/embed2.html?lat=${coordenadas.latitud}&lon=${coordenadas.longitud}&zoom=8&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&detailLat=${coordenadas.latitud}&detailLon=${coordenadas.longitud}&metricWind=default&metricTemp=default&radarRange=-1`}
+            src={`https://embed.windy.com/embed2.html?lat=${coordenadas.latitud}&lon=${coordenadas.longitud}&zoom=10&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&detailLat=${coordenadas.latitud}&detailLon=${coordenadas.longitud}&metricWind=default&metricTemp=default&radarRange=-1`}
             frameBorder="0"
           ></iframe>
+
+          {/* Etiqueta de ubicación sobre el mapa */}
+          <div className="absolute top-2 left-2 bg-white p-2 rounded shadow">
+            <span>Latitud: {coordenadas.latitud}</span><br />
+            <span>Longitud: {coordenadas.longitud}</span>
+          </div>
         </div>
 
         <div className="flex-1 p-4">
@@ -123,15 +128,15 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
           <table className="table table-xs w-full">
             <thead>
               <tr>
-                <th>Mes</th>
-                <th>Probabilidad</th>
+                <th className="text-black">Mes</th>
+                <th className="text-black">Probabilidad</th>
               </tr>
             </thead>
             <tbody>
               {dataMeses.map((item, index) => (
                 <tr key={index}>
-                  <td>{item.mes}</td>
-                  <td>{item.probabilidad}</td>
+                  <td className="text-black">{item.mes}</td>
+                  <td className="text-black">{item.probabilidad}</td>
                 </tr>
               ))}
             </tbody>
@@ -145,23 +150,23 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
         <table className="table table-xs w-full">
           <thead>
             <tr>
-              <th>Fecha</th>
-              <th>Temperatura (°C)</th>
-              <th>Precipitación (mm)</th>
-              <th>Humedad (%)</th>
-              <th>Presión (hPa)</th>
-              <th>Viento (km/h)</th>
+              <th className="text-black">Fecha</th>
+              <th className="text-black">Temperatura (°C)</th>
+              <th className="text-black">Precipitación (mm)</th>
+              <th className="text-black">Humedad (%)</th>
+              <th className="text-black">Presión (hPa)</th>
+              <th className="text-black">Viento (km/h)</th>
             </tr>
           </thead>
           <tbody>
             {currentItems.map((dato, index) => (
               <tr key={index}>
-                <td>{formatDate(dato.fecha)}</td> {/* Formatear la fecha aquí */}
-                <td>{dato["Temperatura Media"]}</td>
-                <td>{dato.Precipitación}</td>
-                <td>{dato["Humedad Relativa Media"]}</td>
-                <td>{dato.Presion}</td>
-                <td>{dato["Velocidad de Viento Media"]}</td>
+                <td className="text-black">{formatDate(dato.fecha)}</td>
+                <td className="text-black">{dato["Temperatura Media"]}</td>
+                <td className="text-black">{dato.Precipitación}</td>
+                <td className="text-black">{dato["Humedad Relativa Media"]}</td>
+                <td className="text-black">{dato.Presion}</td>
+                <td className="text-black">{dato["Velocidad de Viento Media"]}</td>
               </tr>
             ))}
           </tbody>
@@ -173,7 +178,7 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
             {[...Array(totalPages)].map((_, index) => (
               <input
                 key={index}
-                className={`join-item btn btn-sm ${currentPage === index + 1 ? 'checked' : ''}`} // Marcar la opción seleccionada
+                className={`join-item btn btn-sm ${currentPage === index + 1 ? 'checked' : ''}`}
                 type="radio"
                 name="options"
                 id={`page-${index + 1}`}

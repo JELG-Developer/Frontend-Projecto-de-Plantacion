@@ -154,9 +154,10 @@ const Formulario = () => {
           onChange={(e) => handleSwitchChange(e.target.value)}
         >
           <option value="" disabled>Seleccione Estación</option>
-          <option value="Chachacomani-Batallas (GPRS)">Chachacomani-Batallas</option>
-          <option value="Chua Cocani_M (GPRS)">Chua Cocani</option>
-          <option value="Huarisuyo (GPRS)">Huarisuyo</option>
+          <option value="Chachacomani-Batallas (GPRS)">Chachacomani-Batallas (GPRS)</option>
+          <option value="Chua Cocani_M (GPRS)">Chua Cocani (GPRS)</option>
+          <option value="Huarisuyo (GPRS)">Huarisuyo (GPRS)</option>
+          <option value="Viacha_M (GPRS)">Viacha M (GPRS)</option>
         </select>
       </label>
 

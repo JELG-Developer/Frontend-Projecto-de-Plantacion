@@ -85,7 +85,6 @@ export const TablaRecoverd = () => {
   const downloadPDF = () => {
     const doc = new jsPDF();
 
-    // Usar todo el climateData en lugar de currentItems
     autoTable(doc, {
       head: [columns],
       body: climateData.map((item) => [
@@ -105,7 +104,11 @@ export const TablaRecoverd = () => {
   };
 
   if (loading) {
-    return <p>Cargando ...</p>;
+    return (
+      <div className="flex justify-center items-center h-full">
+        <span className="loading loading-dots loading-md"></span>
+      </div>
+    );
   }
 
   return (
@@ -114,12 +117,12 @@ export const TablaRecoverd = () => {
         <p>¿Cuántos meses debo predecir?</p>
         <input
           type="text"
-          className="grow text-right max-w-20 bg-base-200 p-2 rounded-md "
+          className="grow text-right max-w-20 bg-base-200 p-2 rounded-md"
           value={inputValue}
           onChange={handleInputChange}
         />
         <button
-          className="focus:outline-none bg-sky-500 p-2 "
+          className="focus:outline-none bg-sky-500 p-2"
           onClick={handlePrediccion}
         >
           Predecir
@@ -132,67 +135,81 @@ export const TablaRecoverd = () => {
         </button>
       </div>
 
-      <div className="max-h-80 overflow-y-auto">
-        <div className="overflow-x-auto">
-          <table className="table table-xs">
-            <thead>
-              <tr>
-                {columns.map((column, index) => (
-                  <th key={index}>{column}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {prediccion === null ? ( // Mostrar mensaje si no hay predicción
-                <tr>
-                  <td colSpan={columns.length} className="text-center">
-                    Elabore su predicción.
-                  </td>
-                </tr>
-              ) : currentItems.length > 0 ? (
-                currentItems.map((row, rowIndex) => (
-                  <tr key={rowIndex}>
-                    {columns.map((column, colIndex) => (
-                      <td key={colIndex}>{row[column]}</td>
-                    ))}
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan={columns.length} className="text-center">
-                    No hay datos disponibles.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-            <tfoot>
-              <tr>
-                {columns.map((column, index) => (
-                  <th key={index}>{column}</th>
-                ))}
-              </tr>
-            </tfoot>
-          </table>
+      {/* Mostrar alerta si no hay predicción */}
+      {prediccion === null ? (
+        <div role="alert" className="alert alert-info mt-8">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="h-6 w-6 shrink-0 stroke-current">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>Elabore su predicción para mostrar los datos.</span>
         </div>
-      </div>
+      ) : (
+        <div className="max-h-80 overflow-y-auto mt-8">
+          <div className="overflow-x-auto">
+            <table className="table table-xs">
+              <thead>
+                <tr>
+                  {columns.map((column, index) => (
+                    <th key={index} className="text-black">{column}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {currentItems.length > 0 ? (
+                  currentItems.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {columns.map((column, colIndex) => (
+                        <td key={colIndex}>{row[column]}</td>
+                      ))}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={columns.length} className="text-center">
+                      No hay datos disponibles.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+              <tfoot>
+                <tr>
+                  {columns.map((column, index) => (
+                    <th key={index}></th>
+                  ))}
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Paginación */}
-      <div className="flex justify-center mt-4">
-        <div className="join">
-          {[...Array(totalPages)].map((_, index) => (
-            <input
-              key={index}
-              className="join-item btn btn-sm"
-              type="radio"
-              name="options"
-              id={`page-${index + 1}`}
-              aria-label={`${index + 1}`}
-              checked={currentPage === index + 1}
-              onChange={() => handlePageChange(index + 1)}
-            />
-          ))}
+      {prediccion !== null && (
+        <div className="flex justify-center mt-4">
+          <div className="join">
+            {[...Array(totalPages)].map((_, index) => (
+              <input
+                key={index}
+                className="join-item btn btn-sm"
+                type="radio"
+                name="options"
+                id={`page-${index + 1}`}
+                aria-label={`${index + 1}`}
+                checked={currentPage === index + 1}
+                onChange={() => handlePageChange(index + 1)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
