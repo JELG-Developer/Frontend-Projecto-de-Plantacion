@@ -1,7 +1,7 @@
-import conservacionImage from '../assets/conservacion.jpg';
+import cicloImage from '../../../../assets/ciclo.jpg';
 import { useState, useEffect } from 'react';
 
-const Tecnicas = () => {
+const Ciclo = () => {
   const [isExpanded, setIsExpanded] = useState(false); // Estado para controlar la expansión
 
   useEffect(() => {
@@ -36,8 +36,8 @@ const Tecnicas = () => {
     >
       <figure>
         <img 
-          src={conservacionImage} 
-          alt="Técnicas de Conservación" 
+          src={cicloImage} 
+          alt="Ciclo Agrícola" 
           className="object-cover w-full h-24"
         />
       </figure>
@@ -45,18 +45,19 @@ const Tecnicas = () => {
         <h2 
           className={`card-title text-white font-bold ${isExpanded ? '' : 'cursor-pointer'}`}
         >
-          Técnicas de Conservación
+          Ciclo Agrícola
         </h2>
         {/* Mostrar el párrafo solo si está expandido */}
         <p className={`mt-2 text-white text-justify ${isExpanded ? 'block' : 'hidden md:block'}`}>
-          Las técnicas de conservación tradicionales, como el chuño y la tunta, son importantes en el ciclo agrícola, 
-          ya que permiten a los agricultores prolongar la vida útil de la papa y almacenar la producción 
-          para su uso durante el año. Estas prácticas se integran en el ciclo agrícola, especialmente 
-          después de la cosecha.
+          El ciclo de cultivo de la papa en las regiones altiplánicas sigue los patrones estacionales. 
+          La siembra generalmente se realiza durante los meses de lluvias, entre octubre y diciembre, 
+          y la cosecha se lleva a cabo entre marzo y abril. Las bajas temperaturas nocturnas pueden 
+          limitar el desarrollo del cultivo, por lo que se seleccionan variedades resistentes a las 
+          heladas y se practican técnicas como el uso de mulching para proteger los brotes.
         </p>
       </div>
     </div>
   );
 }
 
-export default Tecnicas;
+export default Ciclo;

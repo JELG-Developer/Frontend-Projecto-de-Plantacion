@@ -1,4 +1,4 @@
-import papaImage from '../assets/papa.jpg'; // Asegúrate de tener una imagen para el componente
+import papaImage from '../../../../assets/papa.jpg'; // Asegúrate de tener una imagen para el componente
 import { useState, useEffect } from 'react';
 
 const Papa = () => {

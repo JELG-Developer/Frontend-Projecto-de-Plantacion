@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import climaImage from "../assets/clima.jpg";
-import Formulario from "./Formulario";
-import Graficas from "./Graficas";
-import Mapa from "./Mapa";
 import axios from "axios";
-import { TablaHistorica } from "./TablaHistorica";
-import { TablaRecoverd } from "./TablaRecoverd";
-
+import Formulario from "../analitics/Formulario";
+import Graficas from "../analitics/Graficas";
+import Mapa from "../analitics/Mapa";
+import { TablaHistorica } from "../analitics/TablaHistorica";
+import { TablaRecoverd } from "../analitics/TablaRecoverd";
+import climaImage from "../../../../assets/clima.jpg"
 const Clima = () => {
   const [climateData, setClimateData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -80,18 +79,18 @@ const Clima = () => {
       {/* Sección de Mapa */}
       <div className="mb-4">
         <div className="divider divider-neutral mb-10 mt-10">
-            <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
-              Mapa
-            </h2>
-          </div>
-          <Mapa />
+          <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
+            Mapa
+          </h2>
+        </div>
+        <Mapa />
       </div>
-      
+
       {/* Seccion de las tablas con paginación */}
-      <TablaHistorica data={currentItems} />
-      <div className="mb-4">
-        <div className="flex justify-center mt-4">
-          <div className="join">
+      <TablaHistorica data={currentItems}  />
+      <div className="mb-4  w-auto ">
+        <div className="flex  justify-center mt-4">
+          <div className="join flex flex-wrap gap-1">
             {[...Array(totalPages)].map((_, index) => (
               <input
                 key={index}

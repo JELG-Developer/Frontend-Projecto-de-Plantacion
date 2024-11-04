@@ -23,7 +23,7 @@ export const TablaHistorica = ({ data }) => {
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 ">
       <div className="divider divider-primary mb-10 mt-10">
         <h2 className="subtitle text-primary text-sm md:text-xl lg:text-2xl">
           Historial

@@ -1,12 +1,4 @@
-import tecnologiaImage from '../assets/tecnologia.jpg';
-
-/**
- * Componente que muestra una imagen y un texto sobre nuevas tecnologías en el Altiplano.
- * 
- * La imagen es un ejemplo de tecnologías agroecológicas implementadas en el Altiplano.
- * El texto menciona la implementación de sistemas de riego por goteo y SIG para mejorar la planificación
- * agrícola y la resistencia al cambio climático en la región.
- */
+import tecnologiaImage from '../../../../assets/tecnologia.jpg';
 const Tecnologia = () => {
   return (
     <div className="flex flex-col md:flex-row max-w-7xl bg-white rounded-lg overflow-hidden">

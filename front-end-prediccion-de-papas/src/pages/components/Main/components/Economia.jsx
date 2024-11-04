@@ -1,11 +1,4 @@
-import economiaImage from '../assets/economia.jpg';
-
-/**
- * Componente que muestra una imagen y un texto que describe la economía local
- * de las regiones altiplánicas.
- *
- * @returns {JSX.Element} Componente que muestra la economía local.
- */
+import economiaImage from '../../../../assets/economia.jpg';
 const Economia = () => {
   return (
     <div className="flex flex-col md:flex-row max-w-7xl bg-white rounded-lg overflow-hidden">

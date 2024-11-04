@@ -1,16 +1,6 @@
 import { useState } from 'react';
-import locationIcon from '../assets/location.png';
-import closeIcon from '../assets/close.png';
-
-/**
- * Componente de barra de navegación que incluye un enlace a Acerca de y un
- * botón para mostrar u ocultar un cuadro de búsqueda con animación.
- *
- * El cuadro de búsqueda se muestra u oculta cuando se hace clic en el botón
- * de Encuentra tu localidad o en el ícono de cierre.
- *
- * @returns {JSX.Element} Componente de barra de navegación.
- */
+import locationIcon from '../../assets/location.png';
+import closeIcon from '../../assets/close.png';
 const Navbar = () => {
   const [isSearchVisible, setSearchVisible] = useState(false);
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import upeaLogo from "../assets/upea.jpeg"; // Asegúrate de tener el logo en la carpeta correcta
+import upeaLogo from "../../assets/upea.jpeg"; // Asegúrate de tener el logo en la carpeta correcta
 import axios from "axios";
 
 const Footer = () => {

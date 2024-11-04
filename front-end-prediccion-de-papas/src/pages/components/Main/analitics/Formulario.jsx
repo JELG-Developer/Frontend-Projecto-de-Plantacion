@@ -3,16 +3,16 @@ import axios from 'axios';
 
 const Formulario = () => {
   const [formData, setFormData] = useState({
-    gestion: 0,
+    gestion: 2020,
     mes: 0,
     temperatura_media: 0,
     estacion: "",
-    altura: 0,
+    altura: 3600,
     longitud: 0,
     latitud: 0,
     humedad_relativa_media: 0,
     precipitacion: 0,
-    presion: 0,
+    presion: 500,
     velocidad_viento_media: 0
   });
 
@@ -115,8 +115,7 @@ const Formulario = () => {
           type="number"
           name="gestion"
           className="grow text-right"
-          placeholder="0"
-          min="0"
+          min="2020"
           value={formData.gestion}
           onChange={handleChange}
         />
@@ -187,7 +186,7 @@ const Formulario = () => {
           type="range"
           name="altura"
           className="range range-primary range-xs"
-          min="3000"
+          min="3600"
           max="5000"
           step="1"
           value={formData.altura}
@@ -272,7 +271,7 @@ const Formulario = () => {
           type="range"
           name="presion"
           className="range range-primary range-xs"
-          min="900"
+          min="500"
           max="1100"
           step="0.1"
           value={formData.presion}

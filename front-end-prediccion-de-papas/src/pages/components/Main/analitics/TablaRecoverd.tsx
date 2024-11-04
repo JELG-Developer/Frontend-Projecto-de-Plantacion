@@ -112,7 +112,7 @@ export const TablaRecoverd = () => {
   }
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 ">
       <div className="flex gap-2 items-center">
         <p>¿Cuántos meses debo predecir?</p>
         <input

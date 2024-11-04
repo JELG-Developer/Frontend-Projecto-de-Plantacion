@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // Valores base para la predicción de probabilidad
 const baseValues = {
@@ -10,12 +10,17 @@ const baseValues = {
   presion: { min: 600, max: 700 },
   viento: 20, // en km/h
 };
-
 // Función para calcular la probabilidad
 const calcularProbabilidad = (dato) => {
-  const { "Temperatura Media": temperatura, Precipitación: precipitacion, "Humedad Relativa Media": humedad, Presion: presion, "Velocidad de Viento Media": viento } = dato;
+  const {
+    "Temperatura Media": temperatura,
+    Precipitación: precipitacion,
+    "Humedad Relativa Media": humedad,
+    Presion: presion,
+    "Velocidad de Viento Media": viento,
+  } = dato;
 
-  let probabilidad = 'Baja';
+  let probabilidad = "Baja";
   if (
     temperatura >= baseValues.temperatura.min &&
     temperatura <= baseValues.temperatura.max &&
@@ -26,15 +31,17 @@ const calcularProbabilidad = (dato) => {
     presion >= baseValues.presion.min &&
     viento <= baseValues.viento
   ) {
-    probabilidad = 'Alta';
+    probabilidad = "Alta";
   } else if (
-    (temperatura >= baseValues.temperatura.min && temperatura <= baseValues.temperatura.max) ||
-    (precipitacion >= baseValues.precipitacion.min && precipitacion <= baseValues.precipitacion.max) ||
+    (temperatura >= baseValues.temperatura.min &&
+      temperatura <= baseValues.temperatura.max) ||
+    (precipitacion >= baseValues.precipitacion.min &&
+      precipitacion <= baseValues.precipitacion.max) ||
     (humedad >= baseValues.humedad.min && humedad <= baseValues.humedad.max) ||
     (presion >= baseValues.presion.min && presion <= baseValues.presion.max) ||
     viento <= baseValues.viento
   ) {
-    probabilidad = 'Media';
+    probabilidad = "Media";
   }
 
   return probabilidad;
@@ -43,8 +50,8 @@ const calcularProbabilidad = (dato) => {
 // Función para formatear la fecha
 const formatDate = (dateString) => {
   const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, '0'); // Asegura que el día tenga 2 dígitos
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexed
+  const day = String(date.getDate()).padStart(2, "0"); // Asegura que el día tenga 2 dígitos
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Los meses son 0-indexed
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -75,10 +82,15 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
 
     // Procesar los datos de historial para predecir la probabilidad por mes
     // eslint-disable-next-line react/prop-types
-    historial.forEach(dato => {
-      const mes = new Date(dato.fecha).toLocaleString('es-ES', { month: 'long' });
+    historial.forEach((dato) => {
+      const mes = new Date(dato.fecha).toLocaleString("es-ES", {
+        month: "long",
+      });
       // Solo agregar si el mes no ha sido definido antes
-      if (Object.prototype.hasOwnProperty.call(meses, mes) && meses[mes] === null) {
+      if (
+        Object.prototype.hasOwnProperty.call(meses, mes) &&
+        meses[mes] === null
+      ) {
         const probabilidad = calcularProbabilidad(dato);
         meses[mes] = probabilidad;
       }
@@ -87,7 +99,7 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
     // Asegurarse de que hay exactamente 12 meses
     const resultadoFinal = Object.entries(meses).map(([mes, probabilidad]) => ({
       mes,
-      probabilidad: probabilidad || 'Baja' // Asignar 'Baja' si no se encontró probabilidad
+      probabilidad: probabilidad || "Baja", // Asignar 'Baja' si no se encontró probabilidad
     }));
 
     setDataMeses(resultadoFinal);
@@ -102,11 +114,11 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
   const currentItems = historial.slice(startIndex, startIndex + itemsPerPage);
 
   return (
-    <div className="station-section mb-10">
+    <div className="station-section mb-10  ">
       <h2 className="text-2xl font-bold mb-4">{nombre}</h2>
 
       {/* Sección de Mapa y Predicción de Meses */}
-      <div className="relative flex">
+      <div className="relative flex max-sm:flex-col ">
         <div className="flex-1">
           <iframe
             title={`Mapa meteorológico de ${nombre}`}
@@ -118,14 +130,15 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
 
           {/* Etiqueta de ubicación sobre el mapa */}
           <div className="absolute top-2 left-2 bg-white p-2 rounded shadow">
-            <span>Latitud: {coordenadas.latitud}</span><br />
+            <span>Latitud: {coordenadas.latitud}</span>
+            <br />
             <span>Longitud: {coordenadas.longitud}</span>
           </div>
         </div>
 
-        <div className="flex-1 p-4">
+        <div className="flex-1 p-4 ">
           <h3 className="text-lg font-bold mb-2">Meses y Probabilidad</h3>
-          <table className="table table-xs w-full">
+          <table className="table table-xs w-full ">
             <thead>
               <tr>
                 <th className="text-black">Mes</th>
@@ -145,9 +158,9 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
       </div>
 
       {/* Tabla de Historial con paginación */}
-      <div className="mt-6">
+      <div className="mt-6 overflow-x-auto ">
         <h3 className="text-lg font-bold mb-2">Historial de Datos</h3>
-        <table className="table table-xs w-full">
+        <table className="table">
           <thead>
             <tr>
               <th className="text-black">Fecha</th>
@@ -166,7 +179,9 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
                 <td className="text-black">{dato.Precipitación}</td>
                 <td className="text-black">{dato["Humedad Relativa Media"]}</td>
                 <td className="text-black">{dato.Presion}</td>
-                <td className="text-black">{dato["Velocidad de Viento Media"]}</td>
+                <td className="text-black">
+                  {dato["Velocidad de Viento Media"]}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -178,7 +193,9 @@ const Estacion = ({ nombre, coordenadas, historial }) => {
             {[...Array(totalPages)].map((_, index) => (
               <input
                 key={index}
-                className={`join-item btn btn-sm ${currentPage === index + 1 ? 'checked' : ''}`}
+                className={`join-item btn btn-sm ${
+                  currentPage === index + 1 ? "checked" : ""
+                }`}
                 type="radio"
                 name="options"
                 id={`page-${index + 1}`}
@@ -201,7 +218,7 @@ const MapaEstaciones = () => {
   useEffect(() => {
     const fetchEstacionesData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/');
+        const response = await axios.get("http://127.0.0.1:8000/");
         const estaciones = response.data.reduce((acc, dato) => {
           if (!acc[dato.estacion]) acc[dato.estacion] = [];
           acc[dato.estacion].push(dato);
@@ -217,9 +234,17 @@ const MapaEstaciones = () => {
   }, []);
 
   return (
-    <div>
+    <div className="" >
       {estacionesData.map(([nombre, historial], index) => (
-        <Estacion key={index} nombre={nombre} coordenadas={{ latitud: historial[0].latitud, longitud: historial[0].longitud }} historial={historial} />
+        <Estacion
+          key={index}
+          nombre={nombre}
+          coordenadas={{
+            latitud: historial[0].latitud,
+            longitud: historial[0].longitud,
+          }}
+          historial={historial}
+        />
       ))}
     </div>
   );

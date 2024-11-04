@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import proyectoImage from '../assets/proyecto.jpg'; // Asegúrate de tener una imagen adecuada para este proyecto
+import proyectoImage from '../../../../assets/proyecto.jpg'; // Asegúrate de tener una imagen adecuada para este proyecto
 
 const ProyectoDesarrolloAgricola = () => {
   const [isExpanded, setIsExpanded] = useState(false); // Estado para controlar la expansión
