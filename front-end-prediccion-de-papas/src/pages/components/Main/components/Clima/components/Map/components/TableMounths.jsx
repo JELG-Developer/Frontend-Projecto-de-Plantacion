@@ -14,11 +14,11 @@ export const TableMounths = ({ dataMeses }) => {
   const resultadosFiltradosPorAno = dataConFechas.filter(
     (item) => item.fecha.getFullYear() === ultimateYear
   );
-  console.log("datos de ultimo year : ");
+  // console.log("datos de ultimo year : ");
 
-  console.log(resultadosFiltradosPorAno);
+  // console.log(resultadosFiltradosPorAno);
 
-  console.log("------------------------------------");
+  // console.log("------------------------------------");
 
   const months = [
     { value: "01", mounth: "Enero" },
