@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TablaHistorica = ({ data }) => {
+export const TablaHistorics = ({ data }) => {
   const columns = [
     "fecha",
     "estacion",

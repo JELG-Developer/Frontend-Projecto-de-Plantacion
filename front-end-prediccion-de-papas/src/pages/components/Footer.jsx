@@ -3,22 +3,22 @@ import upeaLogo from "../../assets/upea.jpeg"; // Asegúrate de tener el logo en
 import axios from "axios";
 
 const Footer = () => {
-  const APIKey = "c34e5300156b6ed973d2421c25421b56";
+  // const APIKey = "c34e5300156b6ed973d2421c25421b56";
 
-  const getWeather = async (citynames) => {
-    const queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citynames}&appid=${APIKey}&units=metric`;
+  // const getWeather = async (citynames) => {
+  //   const queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citynames}&appid=${APIKey}&units=metric`;
 
-    try {
-      const response = await axios.get(queryURL);
-      console.log(response.data); 
-    } catch (error) {
-      console.error("Unable to connect", error);
-    }
-  };
+  //   try {
+  //     const response = await axios.get(queryURL);
+  //     console.log(response.data); 
+  //   } catch (error) {
+  //     console.error("Unable to connect", error);
+  //   }
+  // };
 
-  useEffect(() => {
-    getWeather("La paz"); 
-  }, []);
+  // useEffect(() => {
+  //   getWeather("La paz"); 
+  // }, []);
 
   return (
     <>

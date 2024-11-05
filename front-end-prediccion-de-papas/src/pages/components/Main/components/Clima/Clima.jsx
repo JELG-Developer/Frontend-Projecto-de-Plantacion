@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Formulario from "../analitics/Formulario";
-import Graficas from "../analitics/Graficas";
-import Mapa from "../analitics/Mapa";
-import { TablaHistorica } from "../analitics/TablaHistorica";
-import { TablaRecoverd } from "../analitics/TablaRecoverd";
-import climaImage from "../../../../assets/clima.jpg"
+import climaImage from "../../../../../assets/clima.jpg";
+import Grafics from "./components/Grafics";
+import { ContainerMap } from "./components/Map/ContainerMap";
+import { TablaRecoverd } from "./components/TablaRecoverd";
+import { TablaHistorics } from "./components/TableHistoric";
 const Clima = () => {
   const [climateData, setClimateData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +16,7 @@ const Clima = () => {
         const response = await axios.get("http://127.0.0.1:8000/");
         setClimateData(response.data);
       } catch (error) {
-        console.error("Error al cargar los datos climáticos:", error);
+        // console.error("Error al cargar los datos climáticos:", error);
       }
     };
 
@@ -65,29 +64,13 @@ const Clima = () => {
           </p>
         </div>
       </div>
-
+      <div>Calculo de otrs funciones</div>
       {/* Sección de Gráficas */}
-      <div className="mb-4 h-1/3">
-        <div className="divider divider-neutral mb-10 mt-10">
-          <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
-            Gráficas
-          </h2>
-        </div>
-        <Graficas data={climateData} />
-      </div>
-
+      <Grafics data={climateData} />
       {/* Sección de Mapa */}
-      <div className="mb-4">
-        <div className="divider divider-neutral mb-10 mt-10">
-          <h2 className="subtitle text-neutral text-sm md:text-xl lg:text-2xl">
-            Mapa
-          </h2>
-        </div>
-        <Mapa />
-      </div>
+      <ContainerMap />
 
-      {/* Seccion de las tablas con paginación */}
-      <TablaHistorica data={currentItems}  />
+      <TablaHistorics data={currentItems} />
       <div className="mb-4  w-auto ">
         <div className="flex  justify-center mt-4">
           <div className="join flex flex-wrap gap-1">
@@ -107,21 +90,15 @@ const Clima = () => {
         </div>
       </div>
 
-      <div className="divider divider-primary mb-10 mt-10">
-        <h2 className="subtitle text-primary text-sm md:text-xl lg:text-2xl">
-          Predicción
-        </h2>
-      </div>
-
       <TablaRecoverd />
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <div className="divider divider-secondary mb-10 mt-10">
           <h2 className="subtitle text-secondary text-sm md:text-xl lg:text-2xl">
             Ingreso de datos
           </h2>
         </div>
         <Formulario />
-      </div>
+      </div> */}
     </div>
   );
 };

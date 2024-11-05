@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Clima from "./components/Clima";
+import Clima from "./components/Clima/Clima";
 import Teoria from "./components/Teoria";
 import Economia from "./components/Economia";
 import Tecnologia from "./components/Tecnologia";
