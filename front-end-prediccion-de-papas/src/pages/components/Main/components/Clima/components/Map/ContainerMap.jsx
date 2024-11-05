@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { EstacionGPS } from "./helpers/EstationGPS";
+import { EstacionGPS } from "./components/EstationGPS";
 import { CalculateProbability } from "./helpers/CalculateProbability";
 // Componente Principal
 export const ContainerMap = () => {

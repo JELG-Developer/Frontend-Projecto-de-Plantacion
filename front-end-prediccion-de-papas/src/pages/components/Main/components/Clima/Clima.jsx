@@ -5,6 +5,7 @@ import Grafics from "./components/Grafics";
 import { ContainerMap } from "./components/Map/ContainerMap";
 import { TablaRecoverd } from "./components/TablaRecoverd";
 import { TablaHistorics } from "./components/TableHistoric";
+import { ContainerPrediction } from "./components/TablePrediction/ContainerPrediction";
 const Clima = () => {
   const [climateData, setClimateData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,7 +91,8 @@ const Clima = () => {
         </div>
       </div>
 
-      <TablaRecoverd />
+      <ContainerPrediction />
+      {/* <TablaRecoverd /> */}
       {/* <div className="mb-4">
         <div className="divider divider-secondary mb-10 mt-10">
           <h2 className="subtitle text-secondary text-sm md:text-xl lg:text-2xl">

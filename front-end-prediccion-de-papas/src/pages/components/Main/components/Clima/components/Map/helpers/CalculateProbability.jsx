@@ -28,14 +28,6 @@ export const CalculateProbability = (dataArray) => {
       presion <= baseValues.presion.max &&
       viento >= baseValues.viento.min &&
       viento <= baseValues.viento.max;
-
-    // // Imprimir en consola si cumple o no las condiciones
-    // if (cumpleCondiciones) {
-    //   console.log(`Dato en posición ${index} pasó:`, dataPoint);
-    // } else {
-    //   console.log(`Dato en posición ${index} no pasó: falso`);
-    // }
-
     // Retornamos el objeto con el resultado de la evaluación
     return {
       ...dataPoint,
