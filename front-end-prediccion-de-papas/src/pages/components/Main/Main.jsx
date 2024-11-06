@@ -29,13 +29,13 @@ export const Main = () => {
             className="btn w-full bg-blue-500 text-white hover:bg-blue-700 transition duration-200 h-12 md:h-16"
             onClick={() => setSelectedInfo("Clima")}
           >
-            Clima y Ecosistema
+            Prediccion de siembra
           </button>
           <button
             className="btn w-full bg-green-500 text-white hover:bg-green-700 transition duration-200 h-12 md:h-16"
             onClick={() => setSelectedInfo("Teoria")}
           >
-            Teoría del cultivo
+            Teoría de siembra
           </button>
           <button
             className="btn w-full bg-purple-500 text-white hover:bg-purple-700 transition duration-200 h-12 md:h-16"

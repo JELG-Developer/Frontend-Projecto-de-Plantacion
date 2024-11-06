@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import climaImage from "../../../../../assets/clima.jpg";
+import altiplanoPrediccion from "../../../../../assets/Altiplano.png";
 import Grafics from "./components/Grafics";
 import { ContainerMap } from "./components/Map/ContainerMap";
-import { TablaRecoverd } from "./components/TablaRecoverd";
 import { TablaHistorics } from "./components/TableHistoric";
 import { ContainerPrediction } from "./components/TablePrediction/ContainerPrediction";
 const Clima = () => {
@@ -40,34 +39,37 @@ const Clima = () => {
 
   return (
     <div className="p-5">
-      <div className="flex flex-col md:flex-row max-w-7xl bg-white rounded-lg overflow-hidden mb-5">
-        <img
-          src={climaImage}
-          alt="Clima y Ecosistema"
-          className="w-full md:w-[300px] h-auto object-cover rounded-lg"
-        />
+      <div className="grid grid-cols-2 bg-white rounded-lg overflow-hidden mb-5">
+        <div className="flex justify-center items-center" >
+          <img
+            src={altiplanoPrediccion}
+            alt="Clima y Ecosistema"
+            className="w-full  h-auto  object-center rounded-lg max-md:object-cover "
+          />
+        </div>
         <div className="p-4 flex flex-col justify-between">
-          <h2 className="text-xl font-bold">Clima y Ecosistema</h2>
+          <h2 className="text-xl font-bold">Prediccion de siembra</h2>
           <p className="mt-2 text-gray-700 text-justify">
-            El Altiplano boliviano se caracteriza por un clima frío y seco, con
-            temperaturas que varían entre -10 °C y 20 °C. Las precipitaciones,
-            concentradas entre diciembre y marzo, son escasas, promediando entre
-            300 y 500 mm anuales. Las noches extremadamente frías afectan las
-            prácticas agrícolas, que deben adaptarse a estas condiciones.
-            <br />
-            <br />A pesar de las condiciones difíciles, la región cuenta con
-            ecosistemas variados, como pastizales de puna y zonas áridas.
-            Plantas como el ichu (Stipa ichu) son esenciales para la ganadería
-            local. Además, cuerpos de agua como el Lago Titicaca ayudan a
-            regular el clima y proveen recursos vitales, permitiendo que la vida
-            silvestre y las comunidades agrícolas prosperen en este entorno
-            desafiante.
+            La predicción del clima en las comunidades altiplánicas de La Paz se
+            centra en anticipar las condiciones meteorológicas en regiones de
+            altura considerable, como los Andes, donde factores como la
+            variación estacional, la altitud y la geografía impactan
+            notablemente en el clima. Dado que estas comunidades dependen de la
+            agricultura, una predicción climática precisa es esencial para
+            planificar actividades agrícolas, especialmente en cultivos como la
+            papa, que es sensible a las heladas y sequías. <br /> El proceso de
+            predicción se basa en la recopilación de datos meteorológicos
+            históricos y en tiempo real (como temperatura, humedad,
+            precipitaciones y radiación solar) mediante sensores y estaciones
+            climáticas. <br /> Estos datos son procesados y analizados mediante
+            algoritmos de aprendizaje automático o modelos matemáticos, que
+            pueden identificar patrones y realizar proyecciones para días,
+            semanas o meses.
           </p>
         </div>
       </div>
-      <div>Calculo de otrs funciones</div>
       {/* Sección de Gráficas */}
-      <Grafics data={climateData} />
+      <Grafics data={climateData} />  
       {/* Sección de Mapa */}
       <ContainerMap />
 

@@ -1,40 +1,44 @@
-import { useState } from 'react';
-import locationIcon from '../../assets/location.png';
-import closeIcon from '../../assets/close.png';
+import { useState } from "react";
+import locationIcon from "../../assets/location.png";
+import closeIcon from "../../assets/close.png";
 const Navbar = () => {
-  const [isSearchVisible, setSearchVisible] = useState(false);
+  // const [isSearchVisible, setSearchVisible] = useState(false);
 
-  const toggleSearch = () => {
-    setSearchVisible(!isSearchVisible);
-  };
+  // const toggleSearch = () => {
+  //   setSearchVisible(!isSearchVisible);
+  // };
 
   return (
     <div>
       {/* Navbar actualizado */}
       <div className="navbar bg-blue-500">
         <div className="flex-1">
-          <div 
-            className="flex items-center cursor-pointer text-white text-sm sm:text-base font-bold ml-5 hover:bg-blue-600 p-2 rounded transition duration-200" 
-            onClick={toggleSearch}
+          <div
+            className="flex items-center cursor-pointer text-white text-sm sm:text-base font-bold ml-5  p-2 rounded transition duration-200"
+            // onClick={toggleSearch}
           >
-            <img src={locationIcon} alt="Location Icon" className="w-3 h-4 mr-2" />
-            Encuentra tu localidad
+            {/* <img
+              src={locationIcon}
+              alt="Location Icon"
+              className="w-3 h-4 mr-2"
+            />
+            Encuentra tu localidad */}
           </div>
         </div>
         <div className="flex-none mr-5">
           <div className="text-white">
-            <a 
-              href="#about" 
-              className="text-sm sm:text-base hover:bg-blue-600 hover:text-white p-2 rounded transition duration-200"
+            <a
+              href="#about"
+              className="text-sm sm:text-base  hover:text-white p-2 rounded transition duration-200"
             >
-              Acerca de
+              
             </a>
           </div>
         </div>
       </div>
 
       {/* Cuadro de búsqueda con animación */}
-      <div 
+      {/* <div 
         className={`fixed top-0 left-0 w-full bg-blue-600 p-5 rounded-lg z-20 transition-transform duration-500 ${isSearchVisible ? 'translate-y-0' : '-translate-y-full'}`}
       >
         {isSearchVisible && (
@@ -58,9 +62,9 @@ const Navbar = () => {
             </div>
           </>
         )}
-      </div>
+      </div> */}
     </div>
   );
-}
+};
 
 export default Navbar;

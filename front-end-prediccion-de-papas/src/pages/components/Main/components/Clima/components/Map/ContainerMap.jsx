@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { EstacionGPS } from "./components/EstationGPS";
 import { CalculateProbability } from "./helpers/CalculateProbability";
+import { TableDaily } from "./components/TableDaily";
 // Componente Principal
 export const ContainerMap = () => {
   const [estacionesData, setEstacionesData] = useState([]);
@@ -10,16 +11,17 @@ export const ContainerMap = () => {
     const fetchEstacionesData = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/");
-        const res =await CalculateProbability(response.data);
+        const res = await CalculateProbability(response.data);
         const uniqueNames = Array.from(
           new Set(res.map((item) => item.estacion))
         );
+
         const estacionesConHistorial = uniqueNames.map((nombre) => {
           const historial = res.filter((item) => item.estacion === nombre);
           return [nombre, historial];
         });
         setEstacionesData(estacionesConHistorial);
-        // console.log("Nombres únicos de estaciones:", uniqueNames);
+        console.log("Nombres únicos de estaciones:", uniqueNames);
         // console.log("Variable que filtra:", estacionesConHistorial);
       } catch (error) {
         console.error("Error al cargar los datos de estaciones:", error);

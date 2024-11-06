@@ -151,12 +151,12 @@ const Grafics = ({ data }) => {
           <Line data={vientoData} options={options} />
         </div>
 
-        <div className="w-full max-w-lg mb-6">
+        {/* <div className="w-full max-w-lg mb-6">
           <h3 className="text-lg font-bold mb-2">Distribución General</h3>
           <div className="w-80 h-80 ml-auto mr-auto md:w-64 md:h-64">
             <Doughnut data={doughnutData} options={options} />
           </div>
-        </div>
+        </div> */}
 
         <div className="w-full max-w-lg mb-6">
           <h3 className="text-lg font-bold mb-2">Precipitación</h3>

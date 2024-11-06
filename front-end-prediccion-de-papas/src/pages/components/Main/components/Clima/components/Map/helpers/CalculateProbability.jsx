@@ -1,4 +1,9 @@
 export const CalculateProbability = (dataArray) => {
+  /**
+   * Este es el caso de uso , aca debes ajustar los datos para que evalues mejor las condiciones por year ,
+   * puedes variar tanto como quieras el caso de uso
+   * 
+   */
   const baseValues = {
     temperatura: { min: 5, max: 20 },
     precipitacion: { min: 0, max: 20 },

@@ -11,9 +11,22 @@ export const TableMounths = ({ dataMeses }) => {
 
   const ultimateYear = ultimaFecha.getFullYear();
 
-  const resultadosFiltradosPorAno = dataConFechas.filter(
-    (item) => item.fecha.getFullYear() === ultimateYear
+  // const resultadosFiltradosPorAno = dataConFechas.filter(
+  //   (item) => item.fecha.getFullYear() === ultimateYear
+  // );
+  const resultadosFiltradosPorAno = dataConFechas
+    .filter((item) => item.fecha.getFullYear() === ultimateYear)
+    .sort((a, b) => b.fecha - a.fecha); // Ordena de más reciente a menos reciente
+
+  // Encuentra un mes de alta y uno de baja entre los más recientes
+  const mesAlta = resultadosFiltradosPorAno.find(
+    (item) => item.cumpleCondiciones
   );
+  const mesBaja = resultadosFiltradosPorAno.find(
+    (item) => !item.cumpleCondiciones
+  );
+  const mesesAMostrar = [mesAlta, mesBaja].filter(Boolean);
+
   // console.log("datos de ultimo year : ");
 
   // console.log(resultadosFiltradosPorAno);
@@ -36,7 +49,7 @@ export const TableMounths = ({ dataMeses }) => {
   ];
 
   return (
-    <div className="flex-1 p-4 ">
+    <div className="flex-1 ">
       <h3 className="text-lg font-bold mb-2">Meses y Probabilidad</h3>
       <table className="table table-xs w-full ">
         <thead>
@@ -46,22 +59,21 @@ export const TableMounths = ({ dataMeses }) => {
           </tr>
         </thead>
         <tbody>
-          {months.map((month, index) => {
-            // Busca si hay datos para el mes actual
-            const dataForMonth = resultadosFiltradosPorAno.find((item) => {
-              const monthIndex = item.fecha.getMonth(); // Obtiene el índice del mes
-              return monthIndex === parseInt(month.value) - 1; // Compara con el índice del mes (ajustado)
-            });
-
+          {mesesAMostrar.map((item, index) => {
+            const monthName = months[item.fecha.getMonth()].mounth;
             return (
               <tr key={index}>
-                <td className="text-black">{month.mounth}</td>
+                <td className="text-black">{monthName}</td>
                 <td className="text-black">
-                  {dataForMonth
-                    ? dataForMonth.cumpleCondiciones
-                      ?  <p className="bg-green-500 py-1 px-2 rounded-md w-max font-medium" >Alta </p> 
-                      : <p className="bg-red-400 py-1 px-2  rounded-md w-max font-medium" >Baja </p> 
-                    : <p className="bg-slate-200 py-1 px-2  rounded-md w-max font-medium" >Desconocido </ p> }
+                  {item.cumpleCondiciones ? (
+                    <p className="bg-green-500 py-1 px-2 rounded-md w-max font-medium">
+                      Alta
+                    </p>
+                  ) : (
+                    <p className="bg-red-400 py-1 px-2 rounded-md w-max font-medium">
+                      Baja
+                    </p>
+                  )}
                 </td>
               </tr>
             );

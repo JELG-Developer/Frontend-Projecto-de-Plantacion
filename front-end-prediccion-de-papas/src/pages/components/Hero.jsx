@@ -16,7 +16,7 @@ const Hero = () => {
         </div>
         <div className="ml-4 text-base text-left mt-2 md:mt-4 hidden md:block">
           <p className="text-white text-shadow">Universidad Pública del Alto</p>
-          <p className="text-white text-shadow">Ingeniería en Sistemas</p>
+          <p className="text-white text-shadow">Ingeniería de Sistemas</p>
         </div>
       </div>
       <div className="text-white text-4xl md:text-6xl ml-4 font-bold">

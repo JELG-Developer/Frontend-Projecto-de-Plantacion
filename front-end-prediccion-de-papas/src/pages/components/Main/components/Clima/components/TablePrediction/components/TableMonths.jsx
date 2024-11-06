@@ -19,6 +19,10 @@ export const TableMonths = ({ dataMeses, nombre }) => {
   const resultadosFiltradosPorAno = dataConFechas.filter(
     (item) => item.fecha.getFullYear() === ultimateYear
   );
+  // const resultadosFiltradosPorAno = dataConFechas
+  // .filter((item) => item.fecha.getFullYear() === ultimateYear)
+  // .sort((a, b) => a.fecha - b.fecha)
+  // .slice(-2); 
   // console.log("datos recibidos : ");
   // console.log(dataMeses);
   // console.log("------------------------------------");

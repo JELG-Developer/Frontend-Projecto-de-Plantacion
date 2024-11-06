@@ -4,9 +4,10 @@ import { DownloadPDF } from "./helpers/DownloadPDF";
 import { TablePrediction } from "./components/TablePrediction";
 import { CalculateProbability } from "../Map/helpers/CalculateProbability";
 import { TableMonths } from "./components/TableMonths";
+import GraficsPrediccion from "./components/GraficsPrediccion";
 export const ContainerPrediction = () => {
   const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState(1); 
+  const [inputValue, setInputValue] = useState(1);
   const [climateData, setClimateData] = useState([]);
   const [historialFiltrado, setHistorialFiltrado] = useState([]);
   const handleInputChange = (e) => {
@@ -16,21 +17,22 @@ export const ContainerPrediction = () => {
   const handlePrediccion = async () => {
     const predictionResult = parseInt(inputValue);
     setLoading(true);
-    
+
     const res = await PostPrediccion({ prediccion: predictionResult });
 
     const FilteredData = await CalculateProbability(res.data);
-  
+
     const uniqueNames = Array.from(
       new Set(res.data.map((item) => item.estacion))
     );
-  
+
     const estacionesConHistorial = uniqueNames.map((nombre) => {
       const historial = FilteredData.filter((item) => item.estacion === nombre);
       return [nombre, historial];
     });
+    console.log(estacionesConHistorial);
     setHistorialFiltrado(estacionesConHistorial);
-  
+
     if (res != null || res != undefined) {
       setLoading(false);
       setClimateData(res.data);
@@ -76,6 +78,12 @@ export const ContainerPrediction = () => {
           </div>
         ))}
       </div>
+      {/* aca podemos mapear tambien la grafica para cada estacion  */}
+      {historialFiltrado && historialFiltrado.length > 0 ? (
+        <GraficsPrediccion data={climateData} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
